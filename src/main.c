@@ -26,10 +26,15 @@ int main(int argc, char* argv[]) {
     int arr[100] = {};
     int counter = 0;
 
-    while (scanf("%d", &(arr[counter])) && counter < 100) {
-        counter += 1;
+    for (int i = 0; i < 100; i++){
+        if (scanf("%d", &arr[i]) == 1) {
+            counter += 1;
+        }
+        else{
+            break;
+        }
     }
-
+    
     sort(arr, 0, counter + 1);
 
     for (int i = 0; i < counter; ++i) {
