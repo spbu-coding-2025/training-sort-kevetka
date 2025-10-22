@@ -1,41 +1,38 @@
 #include "stdio.h"
 
-void sort(int* arr, int start, int end)  {
-    if (end - start > 1) {
-        int indexLessElement = start - 1;
-        int referenceElement = arr[end - 1];
-        for (int index = start; index < end - 1; ++index) {
-            if (arr[index] <= referenceElement) {
-                indexLessElement += 1;
-                if (arr[indexLessElement] > referenceElement) {
-                    int temp = arr[indexLessElement];
-                    arr[indexLessElement] = arr[index];
-                    arr[index] = temp;
-                }
+void sort(int* arr, int arrLen)  {
+    int LenghtSubSicle = arrLen;
+    for (int i = 0; i < arrLen; ++i) {
+        for (int j = 0; j < LenghtSubSicle; ++j)  {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
             }
         }
-        int temp = arr[indexLessElement + 1];
-        arr[indexLessElement + 1] = arr[end - 1];
-        arr[end - 1] = temp;
-        sort(arr, 0, indexLessElement);
-        sort(arr, indexLessElement + 2, end);
-    }
+        LenghtSubSicle--;
+    } 
 }
 
 int main(int argc, char* argv[]) {
     int arr[100] = {};
     int counter = 0;
 
-    for (int i = 0; i < 100; i++){
+    for (int i = 0; i < 100; i++) {
         if (scanf("%d", &arr[i]) == 1) {
             counter += 1;
+            char next_char = getchar();
+            if (next_char == '\n'){
+                break;
+            }
+            ungetc(next_char, stdin);
         }
         else{
             break;
         }
     }
     
-    sort(arr, 0, counter + 1);
+    sort(arr, counter);
 
     for (int i = 0; i < counter; ++i) {
         printf("%d ", arr[i]);
