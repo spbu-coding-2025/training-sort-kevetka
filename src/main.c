@@ -3,7 +3,7 @@
 void sort(int* arr, int arrLen)  {
     int LenghtSubSicle = arrLen;
     for (int i = 0; i < arrLen; ++i) {
-        for (int j = 0; j < LenghtSubSicle; ++j)  {
+        for (int j = 0; j < LenghtSubSicle - 1; ++j)  {
             if (arr[j] > arr[j + 1]) {
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
